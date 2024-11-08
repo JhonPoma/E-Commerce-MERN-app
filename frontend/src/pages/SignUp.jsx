@@ -6,6 +6,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 import imageToBase64 from '../helpers/imageTobase64';
+import ResumenApi from '../../common/index.js';
 
 const SignUp = () => {
 
@@ -30,8 +31,23 @@ const SignUp = () => {
       })
   }
 
-  const handleSubmit = (e)=>{
-      e.preventDefault()
+  const handleSubmit = async(e)=>{
+    e.preventDefault()
+    
+    if(data.password === data.confirmPassword){
+        // enviamos al backend
+            const dataResponse = await fetch(ResumenApi.singUP.url,{
+                method : ResumenApi.singUP.method,
+                headers : {
+                    "content-type" : "application/json"
+                },
+                body : JSON.stringify(data) // data es lo que enviamos al backend
+            })
+            const dataAPI = await dataResponse.json()
+            console.log(dataAPI)
+    }else{
+        alert("password is not equals")
+    }
 
   }
 
@@ -74,10 +90,10 @@ const SignUp = () => {
                     <div className='grid'>
                         <label>Name : </label>
                         <div className='bg-slate-100 p-2'>
-                            <input  type="email"
+                            <input  type="text"
                                     placeholder='enter your name' 
-                                    name='email'
-                                    value={data.email}
+                                    name='name'
+                                    value={data.name}
                                     onChange={handleOnChange}
                                     className='w-full h-full outline-none bg-transparent'/>
                         </div>
