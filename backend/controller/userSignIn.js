@@ -1,6 +1,6 @@
 import { userModel } from "../models/userModel.js"
 import bcrypt from 'bcrypt'
-
+import jwt from 'jsonwebtoken'
 
 const userSingInController = async(req,res)=>{
     try {
@@ -22,8 +22,21 @@ const userSingInController = async(req,res)=>{
         console.log("checkeando", checkPassword)
 
         if(checkPassword){
-            res.json({
-                message: "bienvenido"
+            
+            const tokenData = {
+                _id : usuario._id,
+                email : usuario.email,
+            }
+            const token = await jwt.sign( tokenData ,process.env.TOKEN_SECRET_KEY ,{expiresIn:60*60})
+            const tokenOption = {
+                httpOnly : true,
+                secure : true
+            }
+            res.cookie("token", token, tokenOption).json({
+                message: "Login exitoso...",
+                data : token,
+                succes : true,
+                error : false
             })
         }else{
             throw new Error("Porfavor chequea tu password")
