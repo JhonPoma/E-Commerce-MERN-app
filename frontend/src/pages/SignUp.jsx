@@ -3,10 +3,13 @@ import { useState } from 'react'
 import LogoLogin from '../assest/signin.gif'
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import imageToBase64 from '../helpers/imageTobase64';
 import ResumenApi from '../../common/index.js';
+
+// Usamo el react-toastify
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
 
@@ -20,6 +23,8 @@ const SignUp = () => {
       confirmPassword : "",
       profilepic : ""
   })
+
+  const navegar = useNavigate()
 
   const handleOnChange = (e)=>{
       const {name, value} = e.target
@@ -44,9 +49,18 @@ const SignUp = () => {
                 body : JSON.stringify(data) // data es lo que enviamos al backend
             })
             const dataAPI = await dataResponse.json()
+
+            if(dataAPI.success){// Si el correo No existe, registro exitoso
+                toast.success(dataAPI.message)
+                navegar("/login")
+            }
+            if(dataAPI.error){// Si el correo SI existe, registro no exitoso.
+                toast.error(dataAPI.message)
+            }
             console.log(dataAPI)
     }else{
-        alert("password is not equals")
+        toast.error("Password is not equals")
+        //alert("password is not equals")
     }
 
   }

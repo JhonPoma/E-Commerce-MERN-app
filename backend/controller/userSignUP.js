@@ -31,11 +31,12 @@ const userSignUpController = async(req,res)=>{
 
         const payload = {
             ...req.body,
+            role : 'GENERAL',
             password : hashPassword
         }
 
         const userData = userModel(payload)
-        const saveUser = userData.save()
+        const saveUser = await userData.save()
 
         res.status(201).json({
             data : saveUser,
@@ -47,7 +48,7 @@ const userSignUpController = async(req,res)=>{
 
     } catch (error) {
         res.json({
-            message : error,
+            message : "Correo ya existe :'v" || error,
             error : true,
             success : false
         })
