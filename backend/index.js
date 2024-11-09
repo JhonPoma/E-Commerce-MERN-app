@@ -8,10 +8,16 @@ import {router} from './routes/index.js'
 import cookieParser from "cookie-parser";
 
 const app = express()
+
+/* Agregamos los parametros origin y credentiasl para 
+seguridad y compatibilidad entre nuestro frontend y backend.
+origin para permitir únicamente solicitudes desde el dominio de nuestro frontend.
+credentials para que el navegador incluya automáticamente cookies en cada solicitud*/
 app.use(cors({
     origin : process.env.FRONTEND_URL,
     credentials : true
 }))
+
 app.use(express.json())
 app.use(cookieParser())
 

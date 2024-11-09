@@ -31,6 +31,7 @@ const Login = () => {
         // Enviamos al backend
         const dataResponse = await fetch(ResumenApi.signIn.url, {
             method : ResumenApi.signIn.method,
+            credentials: 'include',
             headers : {
                 'content-type' : 'application/json'
             },
