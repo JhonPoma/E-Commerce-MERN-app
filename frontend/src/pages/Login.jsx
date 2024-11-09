@@ -3,6 +3,8 @@ import LogoLogin from '../assest/signin.gif'
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import {toast} from 'react-toastify'
+import ResumenApi from '../../common';
 
 const Login = () => {
 
@@ -23,9 +25,28 @@ const Login = () => {
         })
     }
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async(e)=>{
         e.preventDefault()
 
+        // Enviamos al backend
+        const dataResponse = await fetch(ResumenApi.signIn.url, {
+            method : ResumenApi.signIn.method,
+            headers : {
+                'content-type' : 'application/json'
+            },
+            body : JSON.stringify(data)
+        })
+
+        const dataApi = await dataResponse.json()
+        
+        console.log("daaAPI-success", dataApi.success)
+        if(dataApi.success){
+            toast.success(dataApi.message)
+    
+        }
+        if(dataApi.error){
+            toast.error(dataApi.message)
+        }
     }
 
   return (

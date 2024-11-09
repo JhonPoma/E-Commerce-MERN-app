@@ -35,7 +35,7 @@ const userSingInController = async(req,res)=>{
             res.cookie("token", token, tokenOption).json({
                 message: "Login exitoso...",
                 data : token,
-                succes : true,
+                success : true,
                 error : false
             })
         }else{

@@ -5,6 +5,10 @@ const ResumenApi = {
     singUP : {
         url : `${backendDomain}/api/signup`,
         method : "post"
+    },
+    signIn : {
+        url : `${backendDomain}/api/signin`,
+        method : "post"
     }
 }
 
