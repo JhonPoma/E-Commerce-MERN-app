@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import './App.css'
 import { Outlet } from 'react-router-dom'
@@ -8,10 +8,26 @@ import Footer from './components/Footer'
 // React-toastify
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ResumenApi from '../common'
 
 
 function App() {
 
+  const fetchUsuarioDetalles = async()=>{
+    const dataResponse = await fetch(ResumenApi.usuarioActual.url,{
+      method : ResumenApi.usuarioActual.method,
+      credentials : 'include',
+
+    })
+    const dataApi = await dataResponse.json()
+    console.log('dataUser', dataApi)
+  }
+
+  useEffect( ()=>{
+    // detales del usuario
+    fetchUsuarioDetalles()
+  
+  },[])
 
   return (
     <>

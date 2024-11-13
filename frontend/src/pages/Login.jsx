@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import LogoLogin from '../assest/signin.gif'
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {toast} from 'react-toastify'
 import ResumenApi from '../../common';
 
@@ -14,6 +14,8 @@ const Login = () => {
         email : "",
         password : ""
     })
+
+    const navegar = useNavigate()
 
     const handleOnChange = (e)=>{
         const {name, value} = e.target
@@ -43,7 +45,7 @@ const Login = () => {
         console.log("daaAPI-success", dataApi.success)
         if(dataApi.success){
             toast.success(dataApi.message)
-    
+            navegar('/')
         }
         if(dataApi.error){
             toast.error(dataApi.message)
