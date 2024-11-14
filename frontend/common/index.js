@@ -13,8 +13,13 @@ const ResumenApi = {
     usuarioActual : {
         url : `${backendDomain}/api/user-detalles`,
         method : 'get'
+    },
 
+    logout : {
+        url : `${backendDomain}/api/user-logout`,
+        method : 'get'
     }
+    
 }
 
 

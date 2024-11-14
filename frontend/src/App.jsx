@@ -12,7 +12,7 @@ import ResumenApi from '../common'
 import Context from '../context'
 
 import {useDispatch} from 'react-redux'
-import { setUserDetalles } from '../store/userSlice'
+import { setUserDetalles } from './store/userSlice'
 
 function App() {
 
