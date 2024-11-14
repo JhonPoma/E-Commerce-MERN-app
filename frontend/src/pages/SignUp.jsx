@@ -6,7 +6,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 
 import imageToBase64 from '../helpers/imageTobase64';
-import ResumenApi from '../../common/index.js';
+import ResumenApi from '../common/index.js';
 
 // Usamo el react-toastify
 import { toast } from 'react-toastify';

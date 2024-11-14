@@ -8,8 +8,8 @@ import Footer from './components/Footer'
 // React-toastify
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ResumenApi from '../common'
-import Context from '../context'
+import ResumenApi from './common'
+import Context from './context'
 
 import {useDispatch} from 'react-redux'
 import { setUserDetalles } from './store/userSlice'

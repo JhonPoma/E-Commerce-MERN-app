@@ -6,7 +6,7 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import ResumenApi from '../../common';
+import ResumenApi from '../common';
 import { toast} from 'react-toastify';
 import {setUserDetalles} from '../store/userSlice'
 

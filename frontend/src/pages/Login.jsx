@@ -4,8 +4,8 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import {toast} from 'react-toastify'
-import ResumenApi from '../../common';
-import Context from '../../context';
+import ResumenApi from '../common';
+import Context from '../context';
 
 const Login = () => {
 
