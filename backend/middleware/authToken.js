@@ -1,8 +1,8 @@
 
-import jwt from "jsonwebtoken"
+import jwt, { decode } from "jsonwebtoken"
 
 
-const authToken = async(req, res)=>{
+const authToken = async(req, res, next)=>{
 
     try {
         const token = req.cookies?.token //|| req.header
@@ -22,6 +22,9 @@ const authToken = async(req, res)=>{
             if(err){
                 console.log("error de autenticacion",err)
             }
+
+            req.userId = decoded?._id
+            next() // Con esto pasamos al sgt "userDetalles" -> router.get('/user-detalles',authToken, userDetalles)
         } )
 
         console.log("token xd = ",token)

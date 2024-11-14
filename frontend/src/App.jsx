@@ -9,6 +9,7 @@ import Footer from './components/Footer'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ResumenApi from '../common'
+import Context from '../context'
 
 
 function App() {
@@ -31,12 +32,17 @@ function App() {
 
   return (
     <>
-      <ToastContainer/>
-      <Header/>
-      <main className='min-h-[calc(100vh-120px)]'> 
-        <Outlet/>
-      </main>
-      <Footer/>
+      <Context.Provider value={{
+          fetchUsuarioDetalles // fetch (búsqueda ) de detalles del usuario
+      }}>
+        <ToastContainer/>
+        <Header/>
+        <main className='min-h-[calc(100vh-120px)]'> 
+          <Outlet/>
+        </main>
+        <Footer/>
+
+      </Context.Provider>
     </>
   )
 }

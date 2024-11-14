@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import LogoLogin from '../assest/signin.gif'
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import {toast} from 'react-toastify'
 import ResumenApi from '../../common';
+import Context from '../../context';
 
 const Login = () => {
 
@@ -16,6 +17,11 @@ const Login = () => {
     })
 
     const navegar = useNavigate()
+
+    
+    const generalContext = useContext(Context)
+
+    //console.log(generalContext)
 
     const handleOnChange = (e)=>{
         const {name, value} = e.target
@@ -46,6 +52,7 @@ const Login = () => {
         if(dataApi.success){
             toast.success(dataApi.message)
             navegar('/')
+            generalContext.fetchUsuarioDetalles()
         }
         if(dataApi.error){
             toast.error(dataApi.message)
