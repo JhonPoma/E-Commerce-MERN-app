@@ -11,8 +11,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import ResumenApi from '../common'
 import Context from '../context'
 
+import {useDispatch} from 'react-redux'
+import { setUserDetalles } from '../store/userSlice'
 
 function App() {
+
+  const dispatch = useDispatch()
 
   const fetchUsuarioDetalles = async()=>{
     const dataResponse = await fetch(ResumenApi.usuarioActual.url,{
@@ -21,6 +25,9 @@ function App() {
 
     })
     const dataApi = await dataResponse.json()
+    if(dataApi.success){
+      dispatch(setUserDetalles(dataApi.data))
+    }
     console.log('dataUser', dataApi)
   }
 
